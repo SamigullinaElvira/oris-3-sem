@@ -27,6 +27,8 @@ public class PostsRepository {
                         .title(set.getString("title"))
                         .text(set.getString("text"))
                         .userID(set.getLong("user_id"))
+                        .img(set.getBytes("img"))
+                        .imgName(set.getString("img_name"))
                         .build();
 
                 result.add(post);
@@ -42,12 +44,14 @@ public class PostsRepository {
     public void save(Post post) {
         try (Connection connection = PostgresConnectionProvider.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "insert into post_table (title, text, user_id) values (?, ?, ?)"
+                    "insert into post_table (title, text, user_id, img_name, img) values (?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, post.getTitle());
             statement.setString(2, post.getText());
             statement.setLong(3, post.getUserID());
+            statement.setString(4, post.getImgName());
+            statement.setBytes(5, post.getImg());
 
             statement.execute();
 
@@ -72,6 +76,8 @@ public class PostsRepository {
                                 .title(resultSet.getString("title"))
                                 .text(resultSet.getString("text"))
                                 .userID(resultSet.getLong("user_id"))
+                                .imgName(resultSet.getString("img_name"))
+                                .img(resultSet.getBytes("img"))
                                 .build()
                 );
             }

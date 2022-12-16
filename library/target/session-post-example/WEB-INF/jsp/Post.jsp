@@ -14,17 +14,8 @@
 		<div class="mb-5">
 			${post.getText()}
 		</div>
-
-		<div class="mb-5">
-			<h3 class="text-center">Comments</h3>
-			<hr class="mt-3 mb-3">
-			<ul class="list-group">
-				<c:forEach var="comment" items="${recension}">
-					<li class="list-group-item">
-						${UserUtils.getRecensionAuthorName(comment.getUserID())}: ${comment.getText()}
-					</li>
-				</c:forEach>
-			</ul>
+		<div>
+			<img style="object-fit: contain; width: 50%" src="/images/${post.getImgName()}" alt="img" />
 		</div>
 
 		<c:if test="${UserUtils.isPostBelongsToAuthUser(post.getUserID()) || UserUtils.isAdmin()}">
@@ -37,6 +28,18 @@
 				</form>
 			</div>
 		</c:if>
+
+		<div class="mb-5">
+			<h3 class="text-center">Comments</h3>
+			<hr class="mt-3 mb-3">
+			<ul class="list-group">
+				<c:forEach var="comment" items="${recension}">
+					<li class="list-group-item">
+						${UserUtils.getRecensionAuthorName(comment.getUserID())}: ${comment.getText()}
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
 
 		<c:if test="${UserUtils.isAuth()}">
 			<div class="mb-5">

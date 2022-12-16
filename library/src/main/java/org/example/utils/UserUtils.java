@@ -29,7 +29,6 @@ public class UserUtils {
     public static boolean isAdmin() {
         Optional<User> user = ContextInitListener.getAuthUser();
         return user.map(value -> value.getRole().equals("admin")).orElse(false);
-
     }
 
     public static String getRecensionAuthorName(Long authorID) {

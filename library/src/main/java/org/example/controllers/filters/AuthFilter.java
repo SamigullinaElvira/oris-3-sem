@@ -10,11 +10,11 @@ import org.example.utils.UserUtils;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/posts/add")
-public class    AddPostFilter extends HttpFilter {
+@WebFilter(urlPatterns = {"/posts/add", "/blog", "/like", "/favorites"})
+public class AuthFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (!UserUtils.isAuth()) {
+        if ( request.getSession(false) == null || !UserUtils.isAuth()) {
             response.sendRedirect("/auth");
             return;
         }

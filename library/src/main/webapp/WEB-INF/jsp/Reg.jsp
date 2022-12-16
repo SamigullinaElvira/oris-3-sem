@@ -17,7 +17,7 @@
 				<input name="password" type="password" class="form-control" id="password">
 			</div>
 
-			<button class="btn btn-primary">Зарегаться</button>
+			<button class="btn btn-primary">Зарегистрироваться</button>
 		</form>
 	</div>
 </body>

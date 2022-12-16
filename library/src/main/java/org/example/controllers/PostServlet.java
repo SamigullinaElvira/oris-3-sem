@@ -33,8 +33,9 @@ public class PostServlet extends HttpServlet {
             request.setAttribute("post", post);
             request.getRequestDispatcher("/WEB-INF/jsp/Post.jsp").forward(request, response);
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             response.sendRedirect("/posts");
+            return;
         }
 
     }

@@ -14,4 +14,6 @@ public class Post {
     private String title;
     private String text;
     private Long userID;
+    private String imgName;
+    private byte[] img;
 }

@@ -6,7 +6,7 @@
 <body>
 	<jsp:include page="/jsp/Header.jsp" />
 	<div class="ml-3 mt-3">
-		<h1>Hello world</h1>
+		<h1>Home page</h1>
 	</div>
 </body>
 </html>

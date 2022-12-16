@@ -32,13 +32,13 @@ public class AuthServlet extends HttpServlet {
         for (User user : users) {
             if (user.getLogin().equals(login)) {
                 if (user.getPassword().equals(password)) {
-                    request.getSession(true).setAttribute("user", user);
+                    request.getSession().setAttribute("user", user);
                     response.sendRedirect("/home");
                     return;
                 }
             }
         }
 
-        response.sendRedirect("/auth?error");
+        response.sendRedirect("/auth");
     }
 }

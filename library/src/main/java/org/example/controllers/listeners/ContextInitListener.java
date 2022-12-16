@@ -49,6 +49,18 @@ public class ContextInitListener implements ServletContextListener, HttpSessionL
                 "user_id bigint references user_table(id)," +
                 "post_id bigint references post_table(id))";
 
+        // language=SQL
+        String createLikeTable = "create table if not exists like_table (" +
+                "id bigserial primary key," +
+                "post_id bigint references post_table(id)," +
+                "user_id bigint references user_table(id))";
+
+        // language=SQL
+        String alterImages = "alter table post_table add column if not exists img bytea";
+
+        // language=SQL
+        String alterImageName = "alter table post_table add column if not exists img_name varchar(100)";
+
         try (Connection connection = PostgresConnectionProvider.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(createUser);
             statement.execute();
@@ -58,6 +70,16 @@ public class ContextInitListener implements ServletContextListener, HttpSessionL
 
             statement = connection.prepareStatement(createRecension);
             statement.execute();
+
+            statement = connection.prepareStatement(alterImages);
+            statement.execute();
+
+            statement = connection.prepareStatement(alterImageName);
+            statement.execute();
+
+            statement = connection.prepareStatement(createLikeTable);
+            statement.execute();
+
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -66,10 +88,6 @@ public class ContextInitListener implements ServletContextListener, HttpSessionL
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         session = se.getSession();
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
     }
 
 }

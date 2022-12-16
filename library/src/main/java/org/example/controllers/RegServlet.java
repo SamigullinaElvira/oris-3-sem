@@ -31,7 +31,7 @@ public class RegServlet extends HttpServlet {
 
         for (User user : users) {
             if (user.getLogin().equals(login)) {
-                response.sendRedirect("/reg?error");
+                response.sendRedirect("/reg");
                 return;
             }
         }
